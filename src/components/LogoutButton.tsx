@@ -8,6 +8,7 @@ import { error } from "console";
 import { useRouter } from "next/navigation";
 import { logOutAction } from "@/actions/users";
 
+// logout button
 function LogoutButton() {
   //   const {} = useSonner();
   const router = useRouter();
