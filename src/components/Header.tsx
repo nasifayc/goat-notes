@@ -10,7 +10,7 @@ async function Header() {
   const user = await getUser();
   return (
     <header
-      className="bg-popover relative flex h-24 w-full items-center justify-between px-3 sm:px-8"
+      className="relative flex h-24 w-full items-center justify-between px-3 sm:px-8"
       style={{
         boxShadow: shadow,
       }}
