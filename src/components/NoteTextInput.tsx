@@ -6,6 +6,7 @@ import { ChangeEvent, useEffect } from "react";
 import { debounceTomeout } from "@/lib/constants";
 import useNote from "@/hooks/useNote";
 import { updateNoteAction } from "@/actions/notes";
+import { toast } from "sonner";
 
 type Props = {
   noteId: string;
@@ -33,6 +34,14 @@ function NoteTextInput({ noteId, startingNoteText }: Props) {
 
     updateTimeout = setTimeout(() => {
       updateNoteAction(noteId, text);
+      toast.success("Note updated successfully", {
+        description: "Note updated successfully",
+        style: {
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "1px solid #388E3C",
+        },
+      });
     }, debounceTomeout);
   };
 
