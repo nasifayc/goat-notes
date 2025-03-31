@@ -70,6 +70,8 @@ export async function updateSession(request: NextRequest) {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/fetch-newest-note?userId=${user.id}`,
       ).then((res) => res.json());
 
+      console.log("Newest Note Id", newestNoteId);
+
       if (newestNoteId) {
         const url = request.nextUrl.clone();
         url.searchParams.set("noteId", newestNoteId);
@@ -84,10 +86,15 @@ export async function updateSession(request: NextRequest) {
             },
           },
         ).then((res) => res.json());
+        console.log("Created New Note Id", noteId);
         const url = request.nextUrl.clone();
-        url.searchParams.set("noteId", newestNoteId);
+        url.searchParams.set("noteId", noteId);
         return NextResponse.redirect(url);
       }
+    } else {
+      return NextResponse.redirect(
+        new URL("/login", process.env.NEXT_PUBLIC_BASE_URL),
+      );
     }
   }
 

@@ -36,9 +36,9 @@ function DeleteNoteButton({ noteId, deleteNoteLocally }: Props) {
         toast.success("Note Deleted Successfully!", {
           description: "Your note has been deleted successfully.",
           style: {
-            backgroundColor: "#F44336",
+            backgroundColor: "#4CAF50",
             color: "white",
-            border: "1px solid #E53935",
+            border: "1px solid #388E3C",
           },
         });
 
