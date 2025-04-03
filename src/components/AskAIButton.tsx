@@ -17,6 +17,8 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { Textarea } from "./ui/textarea";
 import { ArrowUpIcon } from "lucide-react";
+import { askAIAboutNoteAction } from "@/actions/notes";
+import "@/styles/ai-response.css";
 
 type Props = {
   user: User | null;
@@ -59,7 +61,20 @@ function AskAIButton({ user }: Props) {
     textareaRef.current?.focus();
   };
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    if (!questionText.trim()) return;
+    const newQuestions = [...questions, questionText.trim()];
+    setQuestions(newQuestions);
+    setQuestionText("");
+    setTimeout(scrollToBottom, 100);
+
+    startTransition(async () => {
+      const response = await askAIAboutNoteAction(newQuestions, responses);
+      setResponses((prevResponses) => [...prevResponses, response]);
+
+      setTimeout(scrollToBottom, 100);
+    });
+  };
 
   const scrollToBottom = () => {
     contentRef.current?.scrollTo({
