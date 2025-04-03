@@ -18,7 +18,6 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "./ui/textarea";
 import { ArrowUpIcon } from "lucide-react";
 import { askAIAboutNoteAction } from "@/actions/notes";
-import "@/styles/ai-response.css";
 
 type Props = {
   user: User | null;
@@ -141,7 +140,7 @@ function AskAIButton({ user }: Props) {
             onChange={(e) => setQuestionText(e.target.value)}
           />
         </div>
-        <Button className="ml-auto size-8 rounded-full">
+        <Button onClick={handleSubmit} className="ml-auto size-8 rounded-full">
           <ArrowUpIcon className="text-background" />
         </Button>
       </DialogContent>
